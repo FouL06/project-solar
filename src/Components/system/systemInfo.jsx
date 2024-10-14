@@ -11,13 +11,14 @@ const SystemInfo = () => {
   const dispatch = useDispatch();
   const systems = useSelector((state) => state.systemInfo.systems);
   const status = useSelector((state) => state.systemInfo.status);
-  const error = useSelector((state) => state.systemInfo.error);
 
   useEffect(() => {
-    if (status === "idle") {
+    dispatch(fetchSystemInfo());
+    const intervalId = setInterval(() => {
       dispatch(fetchSystemInfo());
-    }
-  }, [dispatch, status]);
+    }, 5 * 60 * 1000);
+    return () => clearInterval(intervalId);
+  }, [dispatch]);
 
   return (
     <div id="account-container">
@@ -73,25 +74,6 @@ const SystemInfo = () => {
       ))}
       <SystemStatus />
     </div>
-    // <div>
-    //   {status === "loading" && <div>Loading...</div>}
-    //   {status === "failed" && <div>Error: {error}</div>}
-    //   <ul>
-    //     {systems.map((system) => (
-    //       <li key={system.system_id}>
-    //         <div>Name: {system.system_name || system.system_public_name}</div>
-    //         <div>
-    //           City: {system.city}, {system.postal_code}
-    //         </div>
-    //         <div>System Status: {system.status}</div>
-    //         <div>
-    //           Last Updated:{" "}
-    //           {new Date(system.meta.last_report_at * 1000).toLocaleString()}
-    //         </div>
-    //       </li>
-    //     ))}
-    //   </ul>
-    // </div>
   );
 };
 
