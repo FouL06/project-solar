@@ -54,6 +54,18 @@ app.get("/api/inventory", (req, res) => {
   });
 });
 
+// ROUTE: Gets Total lifetime power production from Enphase API.
+app.get("/api/energy", (req, res) => {
+  const apiUrl = process.env.API_SYSTEM_ENERGY;
+  request(apiUrl, (error, response, body) => {
+    if (error) {
+      return res.status(500).send("Error occured: " + error);
+    }
+    res.setHeader("Content-Type", "application/json");
+    res.send(body);
+  });
+});
+
 // Expose listening port 5001 and display startup message.
 const PORT = 5001;
 app.listen(PORT, () => {
