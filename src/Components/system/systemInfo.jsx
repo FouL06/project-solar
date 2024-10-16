@@ -10,7 +10,6 @@ import OfflineBoltSharpIcon from "@mui/icons-material/OfflineBoltSharp";
 const SystemInfo = () => {
   const dispatch = useDispatch();
   const systems = useSelector((state) => state.systemInfo.systems);
-  const status = useSelector((state) => state.systemInfo.status);
 
   useEffect(() => {
     dispatch(fetchSystemInfo());

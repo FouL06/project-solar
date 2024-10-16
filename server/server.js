@@ -32,10 +32,22 @@ app.get("/api/status", (req, res) => {
 // response to front-end
 app.get("/api/systems", (req, res) => {
   const apiUrl = process.env.API_SYSTEMS_URL;
-
   request(apiUrl, (error, response, body) => {
     if (error) {
       return res.status(500).send("Error occurred: " + error);
+    }
+    res.setHeader("Content-Type", "application/json");
+    res.send(body);
+  });
+});
+
+// ROUTE: Gets Systems inventory from Enphase API Url and forwards on JSON
+// response to front-end
+app.get("/api/inventory", (req, res) => {
+  const apiUrl = process.env.API_SYSTEM_INVENTORY_URL;
+  request(apiUrl, (error, response, body) => {
+    if (error) {
+      return res.status(500).send("Error occured: " + error);
     }
     res.setHeader("Content-Type", "application/json");
     res.send(body);

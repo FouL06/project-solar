@@ -7,7 +7,7 @@ export const fetchSystemStatus = createAsyncThunk(
     const response = await fetch("http://localhost:5001/api/status");
 
     if (!response.ok) {
-      throw new Error("Could not retreive system status...");
+      throw new Error("Could not retrieve system status...");
     }
 
     const data = await response.json();
