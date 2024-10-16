@@ -1,5 +1,6 @@
 const express = require("express");
 const request = require("request");
+const cors = require("cors");
 
 // require dotenv if not in production mode
 if (process.env.NODE_ENV !== "production") {
@@ -8,6 +9,11 @@ if (process.env.NODE_ENV !== "production") {
 
 // Declare express App
 const app = express();
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+);
 
 // ROUTE: Gets current System Status from Enphase API Url and fowards on JSON
 // response to front-end
