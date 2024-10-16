@@ -13,10 +13,10 @@ const SystemInfo = () => {
 
   useEffect(() => {
     dispatch(fetchSystemInfo());
-    const intervalId = setInterval(() => {
-      dispatch(fetchSystemInfo());
-    }, 5 * 60 * 1000);
-    return () => clearInterval(intervalId);
+    // const intervalId = setInterval(() => {
+    //   dispatch(fetchSystemInfo());
+    // }, 5 * 60 * 1000);
+    // return () => clearInterval(intervalId);
   }, [dispatch]);
 
   return (

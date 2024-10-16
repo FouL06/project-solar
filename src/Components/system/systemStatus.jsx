@@ -11,10 +11,10 @@ const SystemStatus = () => {
 
   useEffect(() => {
     dispatch(fetchSystemStatus());
-    const intervalId = setInterval(() => {
-      dispatch(fetchSystemStatus());
-    }, 5 * 60 * 1000);
-    return () => clearInterval(intervalId);
+    // const intervalId = setInterval(() => {
+    //   dispatch(fetchSystemStatus());
+    // }, 5 * 60 * 1000);
+    // return () => clearInterval(intervalId);
   }, [dispatch]);
 
   return (

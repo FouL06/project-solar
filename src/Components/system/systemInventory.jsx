@@ -10,10 +10,10 @@ const SystemInventory = () => {
 
   useEffect(() => {
     dispatch(fetchSystemInventory());
-    const intervalId = setInterval(() => {
-      dispatch(fetchSystemInventory());
-    }, 5 * 60 * 1000);
-    return () => clearInterval(intervalId);
+    // const intervalId = setInterval(() => {
+    //   dispatch(fetchSystemInventory());
+    // }, 5 * 60 * 1000);
+    // return () => clearInterval(intervalId);
   }, [dispatch]);
 
   return (
