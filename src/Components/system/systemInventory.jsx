@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchSystemInventory } from "../../Redux/features/systemInventorySlice";
+import { Bolt } from "@mui/icons-material";
+
+import "./systemInventory.css";
 
 const SystemInventory = () => {
   const dispatch = useDispatch();
@@ -16,46 +19,31 @@ const SystemInventory = () => {
     // return () => clearInterval(intervalId);
   }, [dispatch]);
 
+  // TODO: create hover card over panel to display info
+  // about the panel/inverter
+
   return (
-    <div>
-      <h3>Envoys</h3>
-      {envoys.length > 0 ? (
-        <ul>
-          {envoys.map((envoy) => (
-            <li key={envoy.sn}>
-              {envoy.model} - {envoy.sn} (SKU: {envoy.sku})
-            </li>
-          ))}
-        </ul>
+    <div id="panel-container">
+      {inverters && inverters.length > 0 ? (
+        inverters.map((inverter, index) => (
+          <div key={index} className="panel-card">
+            <Bolt
+              style={{
+                height: "45px",
+                width: "45px",
+                backgroundColor: "lightgreen",
+                borderRadius: "50%",
+              }}
+            />
+            {/* <div className="inverter-info">
+              <p>ID: {inverter.sn}</p>
+              <p>Model: {inverter.model}</p>
+              <p>Sku: {inverter.sku}</p>
+            </div> */}
+          </div>
+        ))
       ) : (
-        <p>No envoys available.</p>
-      )}
-
-      <h3>Inverters</h3>
-      {inverters.length > 0 ? (
-        <ul>
-          {inverters.map((inverter) => (
-            <li key={inverter.sn}>
-              {inverter.model} - {inverter.sn} (SKU: {inverter.sku})
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No inverters available.</p>
-      )}
-
-      <h3>Meters</h3>
-      {meters.length > 0 ? (
-        <ul>
-          {meters.map((meter) => (
-            <li key={meter.sn}>
-              {meter.model} - {meter.sn} (Status: {meter.status}, State:{" "}
-              {meter.state})
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No meters available.</p>
+        <p>No inverters found</p>
       )}
     </div>
   );
