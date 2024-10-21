@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchSystemInventory } from "../../Redux/features/systemInventorySlice";
 import { Bolt } from "@mui/icons-material";
-
+import { Tooltip } from "@mui/material";
 import "./systemInventory.css";
 
 const SystemInventory = () => {
@@ -26,21 +26,29 @@ const SystemInventory = () => {
     <div id="panel-container">
       {inverters && inverters.length > 0 ? (
         inverters.map((inverter, index) => (
-          <div key={index} className="panel-card">
-            <Bolt
-              style={{
-                height: "45px",
-                width: "45px",
-                backgroundColor: "lightgreen",
-                borderRadius: "50%",
-              }}
-            />
-            {/* <div className="inverter-info">
-              <p>ID: {inverter.sn}</p>
-              <p>Model: {inverter.model}</p>
-              <p>Sku: {inverter.sku}</p>
-            </div> */}
-          </div>
+          <Tooltip
+            disableFocusListener
+            disableTouchListener
+            title={
+              "Serial #: " +
+              inverter.sn +
+              " - Model: " +
+              inverter.model +
+              " - SKU: " +
+              inverter.sku
+            }
+          >
+            <div key={index} className="panel-card">
+              <Bolt
+                style={{
+                  height: "45px",
+                  width: "45px",
+                  backgroundColor: "lightgreen",
+                  borderRadius: "50%",
+                }}
+              />
+            </div>
+          </Tooltip>
         ))
       ) : (
         <p>No inverters found</p>
