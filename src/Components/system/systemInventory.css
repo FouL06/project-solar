@@ -1,20 +1,21 @@
 #panel-container {
   display: flex;
-  justify-content: center; /* Center the accordion */
+  justify-content: center;
   align-items: center;
-  width: 100%; /* Ensures the panel container spans full width */
+  width: 100%;
+  margin-bottom: 2%;
 }
 
 .centered-accordion {
-  width: 80%; /* Accordion takes up 80% of the width */
-  margin: 0 auto; /* Ensures the accordion is centered */
+  width: 80%;
+  margin: 0 auto;
 }
 
 .panel-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  justify-content: center; /* Centers the panels */
+  justify-content: center;
 }
 
 .panel-card {
