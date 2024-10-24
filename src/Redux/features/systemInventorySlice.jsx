@@ -20,6 +20,7 @@ const systemInventorySlice = createSlice({
     envoys: [],
     inverters: [],
     meters: [],
+    status: "",
     loading: false,
     error: null,
   },
@@ -36,6 +37,7 @@ const systemInventorySlice = createSlice({
         state.envoys = [...action.payload.envoys];
         state.inverters = [...action.payload.inverters];
         state.meters = [...action.payload.meters];
+        state.status = action.payload.meta.status;
       })
       .addCase(fetchSystemInventory.rejected, (state, action) => {
         state.loading = false;

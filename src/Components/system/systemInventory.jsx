@@ -14,7 +14,7 @@ import { Apps } from "@mui/icons-material";
 
 const SystemInventory = () => {
   const dispatch = useDispatch();
-  const { inverters } = useSelector((state) => state.systemInventory);
+  const { inverters, status } = useSelector((state) => state.systemInventory);
   const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
@@ -67,16 +67,18 @@ const SystemInventory = () => {
                   }
                 >
                   <div className="panel-card">
-                    {/*TODO: make it so that the bolt changes with the status of the inverter so if
-                    so that if its not in good status then it should be red.*/}
-                    <Bolt
-                      style={{
-                        height: "45px",
-                        width: "45px",
-                        backgroundColor: "lightgreen",
-                        borderRadius: "50%",
-                      }}
-                    />
+                    {status && (
+                      <Bolt
+                        style={{
+                          height: "45px",
+                          width: "45px",
+                          backgroundColor:
+                            status === "normal" ? "green" : "red",
+                          borderRadius: "50%",
+                          color: "white",
+                        }}
+                      />
+                    )}
                   </div>
                 </Tooltip>
               ))}
