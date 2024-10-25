@@ -63,7 +63,9 @@ const SystemInventory = () => {
                     " - Model: " +
                     inverter.model +
                     " - SKU: " +
-                    inverter.sku
+                    inverter.sku +
+                    " - Status: " +
+                    status.toUpperCase()
                   }
                 >
                   <div className="panel-card">
